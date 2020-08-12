@@ -26,4 +26,23 @@ public class UserRegistrationTest{
         result = userRegistration.firstName("pooja");
         Assert.assertFalse(result);
     }
+
+    //Test cases for last name
+    @Test
+    public void lastName_returnsTrue_ifLastNameProper() {
+        result = userRegistration.lastName("Gaikwad");
+        Assert.assertTrue(result);
+    }
+
+    @Test
+    public void lastName_returnsFalse_ifNumberOfCharDoesNotMatch() {
+        result = userRegistration.lastName("Ga");
+        Assert.assertFalse(result);
+    }
+
+    @Test
+    public void lastName_returnFalse_ifFirstCharNotUppercase(){
+        result = userRegistration.lastName("gaikwad");
+        Assert.assertFalse(result);
+    }
 }

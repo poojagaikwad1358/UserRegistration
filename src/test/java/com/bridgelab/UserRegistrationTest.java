@@ -90,7 +90,7 @@ public class UserRegistrationTest{
         Assert.assertFalse(result);
     }
 
-    //Test cases for password
+    //Test cases for password rule1 - minimum 8 characters.
     @Test
     public void password_returnTrue_ifPasswordIsProper(){
         result = userRegistration.password("abcdEF12");
@@ -102,4 +102,18 @@ public class UserRegistrationTest{
         result = userRegistration.password("abcdeF1");
         Assert.assertFalse(result);
     }
+
+    //Test cases for password rule2 - atleast one Uppercase.
+    @Test
+    public void password_returnTrue_ifPasswordHavingAleastOneUpperCase(){
+        result = userRegistration.password("Abced1234");
+        Assert.assertTrue(result);
+    }
+
+    @Test
+    public void password_returnFalse_ifPasswordNotHavingAleastOneUpperCase(){
+        result = userRegistration.password("abcedefgh");
+        Assert.assertFalse(result);
+    }
+
 }

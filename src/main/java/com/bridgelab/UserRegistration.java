@@ -1,7 +1,9 @@
 package com.bridgelab;
 
 public class UserRegistration {
-    public static void main(String[] args) {
-
+    public boolean firstName (String firstName) {
+        return firstName.matches("^[A-Z]{1}[a-zA-Z]{2,}");
     }
 }
+
+

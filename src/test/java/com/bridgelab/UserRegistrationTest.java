@@ -141,4 +141,23 @@ public class UserRegistrationTest{
         result = userRegistration.password("Abcedefghi");
         Assert.assertFalse(result);
     }
+
+    //More test cases for email
+    @Test
+    public void email_returnTrue_ifEmailContainSymbol(){
+        result = userRegistration.email("abc@yahoo.com");
+        Assert.assertTrue(result);
+    }
+
+    @Test
+    public void email_returnFalse_ifEmailStartWithDot(){
+        result = userRegistration.email(".abc@gmail.com");
+        Assert.assertFalse(result);
+    }
+
+    @Test
+    public void email_returnFalse_ifEmailIsNotUseCharacterUnderscoreDash(){
+        result = userRegistration.email("abc()*@gmail.com");
+        Assert.assertFalse(result);
+    }
 }

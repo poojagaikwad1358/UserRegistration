@@ -12,7 +12,7 @@ public class UserRegistration {
     }
     //Method for checking email.
     public boolean email (String email) {
-        return email.matches("^[a-zA-Z0-9]+(([._+-]?)[a-zA-Z0-9]+)*@[a-zA-Z0-9]+.[a-zA-Z]{2}([.][a-zA-Z]{2})*$");
+        return email.matches("^[a-zA-Z0-9]+(([._+-]?)[a-zA-Z0-9]+)*@[a-zA-Z0-9]+.[a-zA-Z]{2,4}([.][a-zA-Z]{2,4})*$");
     }
 
     //Method for checking mobile number.

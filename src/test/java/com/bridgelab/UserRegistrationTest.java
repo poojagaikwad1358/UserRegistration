@@ -8,7 +8,7 @@ public class UserRegistrationTest{
     UserRegistration userRegistration = new UserRegistration();
     boolean result;
 
-    //Test cases for first name
+    //Test cases for first name.
     @Test
     public void firstName_returnsTrue_ifFirstNameProper(){
         result = userRegistration.firstName("Pooja");
@@ -27,7 +27,7 @@ public class UserRegistrationTest{
         Assert.assertFalse(result);
     }
 
-    //Test cases for last name
+    //Test cases for last name.
     @Test
     public void lastName_returnsTrue_ifLastNameProper(){
         result = userRegistration.lastName("Gaikwad");
@@ -46,7 +46,7 @@ public class UserRegistrationTest{
         Assert.assertFalse(result);
     }
 
-    //Test cases for email
+    //Test cases for email.
     @Test
     public void email_returnTrue_ifEmailIsProper(){
         result = userRegistration.email("pooja.gaikwad@gmail.co.in");
@@ -63,5 +63,26 @@ public class UserRegistrationTest{
     public void email_returnFalse_ifInEmailSingleDotIsNotThere(){
         result = userRegistration.email("pooja.gaikwad@gmail..com");
         Assert.assertFalse(result);
+    }
+
+    //Test cases for mobile number.
+    @Test
+    public void mobileNumber_returnTrue_ifMobileNumberIsProper(){
+        result = userRegistration.mobileNumber("91 7008409012");
+    }
+
+    @Test
+    public void mobileNumber_returnFalse_ifMobileNumberIsNotTenDigits(){
+        result = userRegistration.mobileNumber("91 700840901");
+    }
+
+    @Test
+    public void mobileNumber_returnFalse_ifNoSpaceAfterCountryCode(){
+        result = userRegistration.mobileNumber("917008409012");
+    }
+
+    @Test
+    public void mobileNumber_retunFalse_ifNumberIsStartWithzero(){
+        result = userRegistration.mobileNumber("91 0308409012");
     }
 }

@@ -1,6 +1,4 @@
 package com.bridgelab;
-
-import junit.framework.TestCase;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -10,154 +8,116 @@ public class UserRegistrationTest{
 
     //Test cases for first name.
     @Test
-    public void firstName_returnsTrue_ifFirstNameProper(){
-        result = userRegistration.firstName("Pooja");
+    public void firstName_returnTrue_ifProper(){
+        result = userRegistration.validateName("Pooja");
         Assert.assertTrue(result);
     }
 
     @Test
-    public void firstName_returnsFalse_ifNumberOfCharDoesNotMatch(){
-        result = userRegistration.firstName("Po");
+    public void firstName_returnFalse_ifNotProper(){
+        result = userRegistration.validateName("Po");
         Assert.assertFalse(result);
     }
 
     @Test
-    public void firstName_returnFalse_ifFirstCharNotUppercase(){
-        result = userRegistration.firstName("pooja");
+    public void firstName_returnFalse_whenNotProper(){
+        result = userRegistration.validateName("pooja");
         Assert.assertFalse(result);
     }
 
     //Test cases for last name.
     @Test
-    public void lastName_returnsTrue_ifLastNameProper(){
-        result = userRegistration.lastName("Gaikwad");
+    public void lastName_returnsTrue_ifProper(){
+        result = userRegistration.validateName("Gaikwad");
         Assert.assertTrue(result);
     }
 
     @Test
-    public void lastName_returnsFalse_ifNumberOfCharDoesNotMatch(){
-        result = userRegistration.lastName("Ga");
+    public void lastName_returnsFalse_ifNotProper(){
+        result = userRegistration.validateName("Ga");
         Assert.assertFalse(result);
     }
 
     @Test
-    public void lastName_returnFalse_ifFirstCharNotUppercase(){
-        result = userRegistration.lastName("gaikwad");
-        Assert.assertFalse(result);
-    }
-
-    //Test cases for email.
-    @Test
-    public void email_returnTrue_ifEmailIsProper(){
-        result = userRegistration.email("pooja.gaikwad@gmail.co.in");
-        Assert.assertTrue(result);
-    }
-
-    @Test
-    public void email_returnFalse_ifEmailIsNotProper(){
-        result = userRegistration.email("pooja.gaikwad$blz.co.in");
-        Assert.assertFalse(result);
-    }
-
-    @Test
-    public void email_returnFalse_ifInEmailSingleDotIsNotThere(){
-        result = userRegistration.email("pooja.gaikwad@gmail..com");
+    public void lastName_returnFalse_ifNotProper(){
+        result = userRegistration.validateName("gaikwad");
         Assert.assertFalse(result);
     }
 
     //Test cases for mobile number.
     @Test
-    public void mobileNumber_returnTrue_ifMobileNumberIsProper(){
-        result = userRegistration.mobileNumber("91 7008409012");
+    public void mobileNumber_returnTrue_ifNumberProper(){
+        result = userRegistration.validateMobileNumber("91 7008409012");
         Assert.assertTrue(result);
     }
 
     @Test
-    public void mobileNumber_returnFalse_ifMobileNumberIsNotTenDigits(){
-        result = userRegistration.mobileNumber("91 700840901");
+    public void mobileNumber_returnFalse_ifNumberNotProper(){
+        result = userRegistration.validateMobileNumber("91 700840901");
         Assert.assertFalse(result);
     }
 
     @Test
-    public void mobileNumber_returnFalse_ifNoSpaceAfterCountryCode(){
-        result = userRegistration.mobileNumber("917008409012");
+    public void mobileNumber_returnFalse_ifNotProper(){
+        result = userRegistration.validateMobileNumber("917008409012");
         Assert.assertFalse(result);
     }
 
     @Test
-    public void mobileNumber_returnFalse_ifNumberIsStartWithzero(){
-        result = userRegistration.mobileNumber("91 0308409012");
+    public void mobileNumber_returnFalse_isNumberNotProper(){
+        result = userRegistration.validateMobileNumber("91 0308409012");
         Assert.assertFalse(result);
     }
 
     //Test cases for password rule1 - minimum 8 characters.
     @Test
-    public void password_returnTrue_ifPasswordIsProper(){
-        result = userRegistration.password("abcdEF12");
+    public void password_returnTrue_ifItProper(){
+        result = userRegistration.validatePassword("abcdEF12");
         Assert.assertTrue(result);
     }
 
     @Test
-    public void password_returnFalse_ifPasswordIsLessThanEightCharacter(){
-        result = userRegistration.password("abcdeF1");
+    public void password_returnFalse_ifNotProper(){
+        result = userRegistration.validatePassword("abcdeF1");
         Assert.assertFalse(result);
     }
 
     //Test cases for password rule2 - atleast one Uppercase.
     @Test
-    public void password_returnTrue_ifPasswordHavingAleastOneUpperCase(){
-        result = userRegistration.password("Abced1234");
+    public void password_returnTrue_whenProper(){
+        result = userRegistration.validatePassword("Abced1234");
         Assert.assertTrue(result);
     }
 
     @Test
-    public void password_returnFalse_ifPasswordNotHavingAleastOneUpperCase(){
-        result = userRegistration.password("abcedefgh");
+    public void password_returnFalse_whenNotProper(){
+        result = userRegistration.validatePassword("abcedefgh");
         Assert.assertFalse(result);
     }
 
     //Test cases for password rule 3 - atleast one numeric number.
     @Test
-    public void password_returnTrue_ifPasswordHavingAleastOneNumeric(){
-        result = userRegistration.password("Abce1defg1");
+    public void password_shouldReturnTrue_whenProper(){
+        result = userRegistration.validatePassword("Abce1defg1");
         Assert.assertTrue(result);
     }
 
     @Test
-    public void password_returnFalse_ifPasswordNotHavingAleastOneNumeric(){
-        result = userRegistration.password("Abcedefghi");
+    public void password_shouldReturnFalse_whenNotProper(){
+        result = userRegistration.validatePassword("Abcedefghi");
         Assert.assertFalse(result);
     }
 
     //Test cases for password rule 4 - exactly one special character.
     @Test
-    public void password_returnTrue_ifPasswordHavingAleastOneSpecialCharacter(){
-        result = userRegistration.password("Abce1defg1@");
+    public void password_returnTrue_ifProper(){
+        result = userRegistration.validatePassword("Abce1defg1@");
         Assert.assertTrue(result);
     }
 
     @Test
-    public void password_returnFalse_ifPasswordNotHavingAleastOneSecialCharacter(){
-        result = userRegistration.password("Abcedefghi");
-        Assert.assertFalse(result);
-    }
-
-    //More test cases for email
-    @Test
-    public void email_returnTrue_ifEmailContainSymbol(){
-        result = userRegistration.email("abc@yahoo.com");
-        Assert.assertTrue(result);
-    }
-
-    @Test
-    public void email_returnFalse_ifEmailStartWithDot(){
-        result = userRegistration.email(".abc@gmail.com");
-        Assert.assertFalse(result);
-    }
-
-    @Test
-    public void email_returnFalse_ifEmailIsNotUseCharacterUnderscoreDash(){
-        result = userRegistration.email("abc()*@gmail.com");
+    public void password_returnFalse_ifItNotProper(){
+        result = userRegistration.validatePassword("Abcedefghi");
         Assert.assertFalse(result);
     }
 }
